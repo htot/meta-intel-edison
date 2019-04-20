@@ -25,8 +25,8 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="thud"
-yocto_tag="thud"
+yocto_branch="warrior"
+yocto_tag="warrior"
 
 do_local_conf () {
   cat > $yocto_conf_dir/local.conf <<EOF
