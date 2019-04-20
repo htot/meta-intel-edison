@@ -307,7 +307,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   echo "Cloning Openembedded layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-openembedded-mirror.git meta-openembedded
   cd ${oe_dir}
-  git checkout ${yocto_tag}
+  git checkout master
 
   cd $poky_dir
   oe_dir=$poky_dir/meta-intel
