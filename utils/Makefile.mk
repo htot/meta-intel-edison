@@ -69,7 +69,7 @@ flash: _check_postbuild_was_done
 	./out/current/build/toFlash/flashall.sh
 
 debian_image:
-	$(MAKE) setup SETUP_ARGS="$(SETUP_ARGS) --deb_packages"
+	$(MAKE) setup
 	$(MAKE) image
 	@echo '*******************************'
 	@echo '*******************************'
