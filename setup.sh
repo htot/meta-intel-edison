@@ -314,7 +314,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   echo "Cloning meta-intel layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-intel-mirror.git meta-intel
   cd ${oe_dir}
-  git checkout ${yocto_tag}
+  git checkout master
 
   cd ${top_repo_dir}
   acpi_dir=${top_repo_dir}/meta-acpi
