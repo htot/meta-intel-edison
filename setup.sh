@@ -282,15 +282,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   if [ "$debian" -eq 1 ]; then
     debian_branch=${yocto_branch:="warrior"} # set debian branch to yocto branch. If not set, use warrior
     echo "Use meta-debian $debian_branch branch to create Debian instead of Yocto Poky image"
-
-    git clone -b ${debian_branch} ${my_dl_dir}/meta-debian-mirror.git meta-debian
     do_update_cache "meta-debian" "https://github.com/meta-debian/"
-
-    if [ -d "$top_repo_dir/meta-debian" ]; then
-      echo "Found meta-debian layer, adding it to Edison list of layers"
-      echo "Note that none of the recipes provided by this layer is compiled by default."
-      do_append_layer $top_repo_dir/meta-debian
-    fi
   fi
 
   # Updating local git cache
@@ -364,6 +356,11 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
       echo "meta-debian already exists, rebasing from local cache"
       cd ${debian_dir}
       git pull --rebase origin ${debian_branch:-warrior}
+    fi
+    if [ -d "$top_repo_dir/meta-debian" ]; then
+      echo "Found meta-debian layer, adding it to Edison list of layers"
+      echo "Note that none of the recipes provided by this layer is compiled by default."
+      do_append_layer $top_repo_dir/meta-debian
     fi
   fi
   
