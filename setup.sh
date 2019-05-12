@@ -123,6 +123,7 @@ function usage()
   echo -e "\t-l --list_sdk_hosts\t\tlist availables sdk host supported machines"
   echo -e "\t--create_src_archive\t\twhen set, copies sources of all deployed packages into build/tmp/deploy/sources"
   echo -e "\t--ipk_packages\t\twhen set, use .ipk package format instead of .deb"
+  echo -e "\t--debian\t\twhen set, use meta-debian to create Debian image instead of Yocto Poky"
   echo ""
 }
 
@@ -176,6 +177,7 @@ main() {
   my_build_name="Custom Edison build by $USER@$HOSTNAME "$(date +"%F %H:%M:%S %Z")
   all_sdk_hosts="linux32 linux64 win32 win64 macosx"
   extra_package_type="package_deb"
+  debian=0
 
   #probe my_sdk_host from uname
   plat=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -202,6 +204,9 @@ main() {
 ARCHIVER_MODE[src] = \"original\"
 COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
 "
+        ;;
+      --debian)
+        debian=1
         ;;
       --ipk_packages)
         extra_package_type="package_ipk"
@@ -251,7 +256,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
     echo "Note that none of the recipes provided by this layer is compiled by default."
     do_append_layer $top_repo_dir/meta-intel-edison-devtools
   fi
-
+  
   case $my_sdk_host in
     win32)
       extra_conf="SDKMACHINE = \"i686-mingw32\""
@@ -269,10 +274,24 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
       extra_conf="SDKMACHINE = \"x86_64\""
       ;;
     *)
-      echo "Unknow host: $my_sdk_host chooses one in [$all_sdk_hosts]"
+      echo "Unknown host: $my_sdk_host chooses one in [$all_sdk_hosts]"
       exit
       ;;
   esac
+ 
+  if [ "$debian" -eq 1 ]; then
+    debian_branch=${yocto_branch:="warrior"} # set debian branch to yocto branch. If not set, use warrior
+    echo "Use meta-debian $debian_branch branch to create Debian instead of Yocto Poky image"
+
+    git clone -b ${debian_branch} ${my_dl_dir}/meta-debian-mirror.git meta-debian
+    do_update_cache "meta-debian" "https://github.com/meta-debian/"
+
+    if [ -d "$top_repo_dir/meta-debian" ]; then
+      echo "Found meta-debian layer, adding it to Edison list of layers"
+      echo "Note that none of the recipes provided by this layer is compiled by default."
+      do_append_layer $top_repo_dir/meta-debian
+    fi
+  fi
 
   # Updating local git cache
   do_update_cache "poky" "git://git.yoctoproject.org"
@@ -316,6 +335,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   cd ${oe_dir}
   git checkout master
 
+  # meta-acpi
   cd ${top_repo_dir}
   acpi_dir=${top_repo_dir}/meta-acpi
   if [ ! -d "${acpi_dir}" ]; then
@@ -330,6 +350,23 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
     git pull --rebase origin eds-5.0.0
   fi
 
+  # meta-debian
+  if [ "$debian" -eq 1 ]; then
+    cd ${top_repo_dir}
+    debian_dir=${top_repo_dir}/meta-debian
+    if [ ! -d "${debian_dir}" ]; then
+      # directory does not exist, create it
+      echo "Cloning meta-debian layer to ${top_repo_dir} directory from local cache"
+      git clone ${my_dl_dir}/meta-debian-mirror.git meta-debian
+      cd ${debian_dir}
+      git checkout ${debian_branch:-warrior}
+    else
+      echo "meta-debian already exists, rebasing from local cache"
+      cd ${debian_dir}
+      git pull --rebase origin ${debian_branch:-warrior}
+    fi
+  fi
+  
   cd ${top_repo_dir}
   echo "Cloning meta-arduino layer to ${top_repo_dir} directory from GitHub.com/01org/meta-arduino"
   rm -rf meta-arduino || true
