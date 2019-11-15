@@ -1,31 +1,72 @@
-# meta-intel-edison Layer
+# Debian
+>**Warning**: This image is not intended to be used for IOT but rather to use Edison board as a small server (Jenkins, Gerrit, web server, ...). It should be easier to install these packages on Debian rather than on Yocto image.  
+>If you want to use Edison for IOT, stick to Yocto image!
 
-This is the Intel Edison image layer for the Intel Edison Development Platform. It builds the boot loader, kernel and root file system for the Intel Edison.
+### Prerequisite
+``sudo apt install debootstrap``
 
-You will find more (stale) details in the README file in this directory
+### Build and flash
+Follow the usual steps to generate a yocto image.  
+Then type: ``make debian`` to generate the Debian image. The make requires sudo to run. So you may be asked for your password.  
+During the process, you will be also asked to create the root password for Edison root account. You will need this password to login on Edison Debian.  
+Use ``sudo out/linux64/build/toFlash/flashall.sh`` to flash it.  
+You can type ``make clean_debian`` to delete the Debian image. It is required before calling ``make debian`` again.  
 
-# What is here
+### Post install
+You will have to:
+* Create a user account: ``adduser an_username``
+* Increase root partition size and if you want, add swap partition
+    * If you plan to use a sdcard to increase storage space
+      * Type the following commands to get full space for rootfs
+         * ``parted /dev/mmcblk0 rm 9``
+         * ``growpart /dev/mmcblk0 8 ``
+         * ``resize2fs /dev/mmcblk0p8``
+      * Create a swap partition on sdcard and mount main sdcard partition on /media
+         * ``parted /dev/mmcblk1``
+         * ``(parted) p`` to print the partition available on your sdcard
+         * ``(parted) rm x`` where x is the number of a partition, repeat until you have removed all partitions
+         * ``(parted) mkpart primary ext4 10 28000`` Create a main partition of 28GB 
+         * ``(parted) mkpart primary linux-swap 28000 100%`` Create a swap partition from 28GB to the end (if you have a 32GB card, it will be 4GB)
+         * ``(parted) q``
+         * ``mkfs.ext4 /dev/mmcblk1p1`` format the main partition
+         * ``mkswap /dev/mmcblk1p2`` format the swap partition
+         * ``echo "/dev/mmcblk1p1 /media auto defaults 1 1" >> /etc/fstab mount main partition at startup at next reboot
+         * ``echo "/dev/mmcblk1p2 none swap sw 0 0" >> /etc/fstab mount swap partition at next reboot
+    * If you don't plan to use a sdcard
+      * If you don't need swap partition. You can live with 1GB of RAM, and want more space to install packages.
+          * ``parted /dev/mmcblk0 rm 9``
+          * ``growpart /dev/mmcblk0 8 ``
+          * ``resize2fs /dev/mmcblk0p8``
+      * You need swap partition because 1GB of RAM may not be enough. We will transform update partition as a swap partition. You will have less space for packages.
+          * ``mkswap  /dev/mmcblk0p9``
+          * ``resize2fs /dev/mmcblk0p8``
+          * ``echo "/dev/mmcblk0p9 none swap sw 0 0" >> /etc/fstab`` mount swap partition at next reboot
+* Connect to wifi as usual with connmanctl
+    * ``connmanctl``
+    * ``connmanctl> enable wifi``
+    * ``connmanctl> agent on``
+    * ``connmanctl> scan wifi``
+    * ``connmanctl> services`` once scan is completed
+    * ``connmanctl> connect wifi_xxxx....``
+    * ``Passphrase?`` Enter your SSID password
+    * ``connmanctl> exit``
 
-This is a fork of [http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-edison/](URL)
+    
+    
 
-You can find our latest sources on [edison-fw/meta-intel-edison](https://github.com/edison-fw/meta-intel-edison). The documentation can be found in the /docs directory or for the latest (master) on [Intel Edison Image Builder](https://edison-fw.github.io/meta-intel-edison/).
+### Come back to Yocto
+A recovery ``sudo toFlash\flash.all --recovery`` may be needed
 
-Currently we have Intel's original (factory) firmware: orignal and created four additional branches: dizzy-uptodate, dizzy-latest, dizzy-rt and morty.
+### Notes
+* Enjoy ``sudo apt update`` and ``sudo apt install package``
+* Growing/resizing rootfs partition is needed only once. So no need to redo it if you reflash the same board.
+* Your home folder for your user account is not deleted when reflashing.
+* Debian buster can be installed but ``connman`` is not working, so connection to wifi is more tricky.
 
-  * **dizzy-uptodate** tracks origin/dizzy with 3.10.98 kernel. This branch pulls [https://github.com/htot/meta-intel-iot-middleware.git](URL) branch dizzy-uptodate with fixes for paho-mqtt relocated and iotkit-comm-js no longer supported. 
-  * **dizzy-latest** tracks origin/master as much as possible with 3.10.98 kernel. This branch pulls [https://github.com/htot/meta-intel-iot-middleware.git](URL) branch dizzy-latest with fixes for paho-mqtt relocated and iotkit-comm-js no longer supported + java support removed. This gives mraa 0.9.0, upm 0.4.1 and mosquitto 1.4.
-* **dizzy-rt** same as dizzy-latest but with **real time** kernel. Switches the kernel to the PREEMPT_RT 3.10.17-rt kernel.
-* **morty** experimental branch based on Yocto Morty, vanilla kernel 4.13.
-* **morty-64** experimental branch based on Yocto Morty, vanilla kernel 4.13 (64 bit).
-* **pyro64** experimental branch based on Yocto Pyro, vanilla kernel 4.13 (64 bit). This version actually builds u-boot with `bitbake -R conf/u-boot.conf lib32-u-boot` (wiki to be updated).
-* **rocko32** and **rocko64-acpi** based on Yocto Rocko with kernel 4.16. 
-* **sumo32** and **sumo64-acpi** based on Yocto Sumo with kernel 4.18
-* * **thud** based on Yocto Thud with kernel 4.20.
 
-# What to choose
 
-Yocto Morty and later will build on Ubuntu Artful (17.10) up to at least Cosmic (18.10).
 
-Generally **sumo32** will give best results if you rely on MRAA and UPM. If you want highly configurable hardware and don't need MRAA, the **thud** enabled version is best.
+           
+      
+   
 
-Thud has a 64 bit kernel because we can, but may be actually slower than the 32bit kernel. Master will normally have the same as Thud, but 32 bits.
