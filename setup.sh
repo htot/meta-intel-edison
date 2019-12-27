@@ -341,8 +341,6 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   cd $mingw_dir
   git apply $top_repo_dir/meta-intel-edison/utils/0001-Enable-SDKTAROPTS.patch
   cd $poky_dir
-  git apply $top_repo_dir/meta-intel-edison/utils/0001-bitbake.conf-building-linux-yocto-5.2-requires-realp.patch
-  git apply $top_repo_dir/meta-intel-edison/utils/0001-sudo-Fix-fetching-sources.patch
 
   if [[ $my_sdk_host == win* ]]
   then
