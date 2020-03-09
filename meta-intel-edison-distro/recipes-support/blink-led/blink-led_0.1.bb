@@ -7,6 +7,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files/:"
 
 inherit systemd
 SYSTEMD_SERVICE_${PN} = "blink-led.service"
+SYSTEMD_AUTO_ENABLE = "disable"
 
 RDEPENDS_${PN} = "libgpiod-python"
 
