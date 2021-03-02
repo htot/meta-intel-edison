@@ -49,10 +49,10 @@ if led.consumer() != "heartbeat":
 	led.release()
 	sys.exit(1)
 
-#set_line("TRI_STATE_ALL", 0)
-#set_line("SPI_CLK_SEL", 0)
-#set_line("MUX18_DIR", 1)
-#set_line("TRI_STATE_ALL", 0)
+set_line("TRI_STATE_ALL", 0)
+set_line("SPI_CLK_SEL", 0)
+set_line("MUX18_DIR", 1)
+set_line("TRI_STATE_ALL", 0)
 
 trigger = open("/sys/class/leds/heartbeat/trigger", "r")
 triggers = trigger.read()
