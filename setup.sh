@@ -25,8 +25,8 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="mickledore"
-yocto_tag="mickledore"
+yocto_branch="nanbield"
+yocto_tag="nanbield"
 
 do_local_conf () {
   rm $yocto_conf_dir/local.conf
@@ -320,7 +320,8 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   echo "Cloning meta-qt5 layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-qt5-mirror.git meta-qt5
   cd ${oe_dir}
-  git checkout ${yocto_tag}
+#  git checkout ${yocto_tag}
+  git checkout master
 
   # Apply patch on top of it allowing to perform build in external source directory
   echo "Applying patch on poky"
