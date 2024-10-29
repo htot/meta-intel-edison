@@ -10,8 +10,8 @@ RemainAfterExit=true
 TimeoutStartSec=60
 Restart=on-failure
 ExecStart=/usr/bin/bluetooth_bd_addr.sh
-StandardOutput=journal+console
-StandardError=journal
+StandardOutput=journal
+StandardError=journal+console
 # Redirect stdin to ensure btmgmt doesn't hang
 StandardInput=tty
 LogLevelMax=info
