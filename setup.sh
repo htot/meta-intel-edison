@@ -86,6 +86,8 @@ BBLAYERS ?= " \\
   $poky_dir/meta-openembedded/meta-oe \\
   $poky_dir/meta-openembedded/meta-python \\
   $poky_dir/meta-openembedded/meta-networking \\
+  $poky_dir/meta-openembedded/meta-filesystems \\
+  $poky_dir/meta-virtualization \\
   $poky_dir/meta-qt5 \\
   $poky_dir/meta-intel \\
   $top_repo_dir/meta-intel-edison/meta-intel-edison-bsp \\
@@ -274,6 +276,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   # Updating local git cache
   do_update_cache "poky" "git://git.yoctoproject.org"
   do_update_cache "meta-openembedded" "https://github.com/openembedded"
+  do_update_cache "meta-virtualization" "git://git.yoctoproject.org"
   do_update_cache "meta-intel" "git://git.yoctoproject.org"
   do_update_cache "meta-acpi" "https://github.com/edison-fw"
   do_update_cache "meta-qt5" "https://github.com/meta-qt5"
@@ -291,6 +294,13 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   oe_dir=$poky_dir/meta-openembedded
   echo "Cloning Openembedded layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-openembedded-mirror.git meta-openembedded
+  cd ${oe_dir}
+  git checkout ${yocto_tag}
+
+  cd $poky_dir
+  oe_dir=$poky_dir/meta-virtualization
+  echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
+  git clone ${my_dl_dir}/meta-virtualization-mirror.git meta-virtualization
   cd ${oe_dir}
   git checkout ${yocto_tag}
 
