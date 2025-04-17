@@ -71,16 +71,6 @@ postbuild:
 	@echo Now you may want to goto 'out/current/build/toFlash' and run 'flashall.sh'
 	@echo or run 'meta-intel-edison/utils/flash/btrfsFlashOta.sh -i root@edison'
 
-flash: _check_postbuild_was_done
-	./out/current/build/toFlash/flashall.sh
-
-debian: edison-image
-	@sudo $(CURDIR)/meta-intel-edison/utils/debian_1_create.sh bookworm
-	@sudo $(CURDIR)/meta-intel-edison/utils/debian_2_mkimage.sh bookworm
-
-clean_debian:
-	@sudo rm -rf out/linux64/build/bookworm
-
 help:
 	@echo 'Main targets:'
 	@echo ' help        - show this help'
