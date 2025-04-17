@@ -68,6 +68,7 @@ SRC_URI:append = " ${@bb.utils.contains("DISTRO_FEATURES", "ppp", " file://ppp.c
 SRC_URI:append = " file://iio.cfg"
 SRC_URI:append = " file://cdc_eem.cfg"
 SRC_URI:append = " file://namespaces.cfg"
+SRC_URI:append = " file://lxc.cfg"
 
 # kernel patches
 SRC_URI:append = " file://0044-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
@@ -87,7 +88,7 @@ SRC_URI:append = " file://0094-platform-x86-intel_scu_ipc-Save-a-copy-of-the-ent
 SRCREV = "v${LINUX_VERSION}"
 LINUX_KERNEL_TYPE = "${@bb.utils.contains("DISTRO_FEATURES", "rt", "preempt-rt", "standard", d)}"
 LINUX_VERSION_EXTENSION = "-edison-acpi-${LINUX_KERNEL_TYPE}"
-LINUX_VERSION ?= "6.12.3"
+LINUX_VERSION ?= "6.12.23"
 KERNEL_VERSION_SANITY_SKIP="1"
 
 COMPATIBLE_MACHINE = "edison"

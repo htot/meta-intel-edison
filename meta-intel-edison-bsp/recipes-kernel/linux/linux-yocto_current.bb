@@ -89,7 +89,7 @@ SRC_URI:append = " file://ftrace.cfg"
 SRCREV ??= "${AUTOREV}"
 LINUX_KERNEL_TYPE = "${@bb.utils.contains("DISTRO_FEATURES", "rt", "preempt-rt", "standard", d)}"
 LINUX_VERSION_EXTENSION = "-edison-acpi-${LINUX_KERNEL_TYPE}"
-LINUX_VERSION ?= "current+git${SRCPV}"
+LINUX_VERSION ?= "6.0-current+git${SRCPV}"
 KERNEL_VERSION_SANITY_SKIP="1"
 
 COMPATIBLE_MACHINE = "edison"

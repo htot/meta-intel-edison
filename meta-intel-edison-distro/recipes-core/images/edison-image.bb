@@ -129,3 +129,9 @@ IMAGE_INSTALL:append = " powertop"
 
 # Clean corrupted journald entries
 IMAGE_INSTALL:append = " cleanjournal"
+
+# Containers
+IMAGE_INSTALL:append = " lxc"
+IMAGE_INSTALL:append = " lxc-templates"
+IMAGE_INSTALL:append = " lxc-networking"
+IMAGE_INSTALL:append = " docker-moby"

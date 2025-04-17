@@ -18,5 +18,5 @@ if [ $RESULT -ne 0 ]; then
   exit $RESULT
 fi
 
-timedatectl set-timezone `curl -s https://ipapi.co/timezone`
+timedatectl set-timezone `curl -4s https://ipapi.co/timezone`
 exit $?
