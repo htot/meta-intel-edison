@@ -65,7 +65,6 @@ cp  --reflink $build_dir/tmp/deploy/images/edison/edison-image-edison.rootfs.btr
 
 # Copy flashing script
 cp  --reflink $top_repo_dir/meta-intel-edison/utils/flash/flashall.sh $build_dir/toFlash/
-cp  --reflink $top_repo_dir/meta-intel-edison/utils/flash/flashall.bat $build_dir/toFlash/
 cp  --reflink $top_repo_dir/meta-intel-edison/utils/flash/filter-dfu-out.js $build_dir/toFlash/
 cp  --reflink $top_repo_dir/meta-intel-edison/utils/flash/FlashEdison.json $build_dir/toFlash/
 cp  --reflink -R $top_repo_dir/meta-intel-edison/utils/flash/helper $build_dir/toFlash/helper
