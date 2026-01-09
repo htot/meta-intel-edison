@@ -70,12 +70,15 @@ SRC_URI:append = " file://cdc_eem.cfg"
 SRC_URI:append = " file://namespaces.cfg"
 SRC_URI:append = " file://lxc.cfg"
 SRC_URI:append = " file://squashfs.cfg"
+SRC_URI:append = " file://mcu.cfg"
 
 # kernel patches
 SRC_URI:append = " file://0044-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
 SRC_URI:append = " file://0001-8250_mid-arm-rx-dma-on-all-ports-with-dma-continousl.patch"
 SRC_URI:append = " file://0001a-usb-dwc3-core-Fix-dwc3_core_soft_reset-before-anythi.patch"
 SRC_URI:append = " file://0001-phy-ti-tusb1210-write-to-scratch-on-power-on.patch"
+SRC_URI:append = " file://0060-platform-x86-Add-Intel-generic-MCU-control-interface.patch"
+SRC_URI:append = " file://0061-platform-x86-Introduce-an-interface-to-Platform-Serv.patch"
 
 # usefull kernel debug options here
 #SRC_URI:append = " file://0001-8250_mid-toggle-IO7-on-ttyS1-interrupt-entry.patch"
