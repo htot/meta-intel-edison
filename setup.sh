@@ -88,6 +88,8 @@ BBLAYERS ?= " \\
   $poky_dir/meta-openembedded/meta-networking \\
   $poky_dir/meta-openembedded/meta-filesystems \\
   $poky_dir/meta-virtualization \\
+  $poky_dir/meta-security \\
+  $poky_dir/meta-snapd \\
   $poky_dir/meta-qt5 \\
   $poky_dir/meta-intel \\
   $top_repo_dir/meta-intel-edison/meta-intel-edison-bsp \\
@@ -280,6 +282,8 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   do_update_cache "meta-intel" "git://git.yoctoproject.org"
   do_update_cache "meta-acpi" "https://github.com/edison-fw"
   do_update_cache "meta-qt5" "https://github.com/meta-qt5"
+  do_update_cache "meta-snapd" "https://github.com/canonical"
+  do_update_cache "meta-security" "git://git.yoctoproject.org"
 
   cd $my_build_dir
   poky_dir=$my_build_dir/poky
@@ -301,6 +305,20 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   oe_dir=$poky_dir/meta-virtualization
   echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-virtualization-mirror.git meta-virtualization
+
+  cd ${oe_dir}
+  git checkout ${yocto_tag}
+  cd $poky_dir
+  oe_dir=$poky_dir/meta-security
+  echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
+  git clone ${my_dl_dir}/meta-security-mirror.git meta-security
+  cd ${oe_dir}
+  git checkout ${yocto_tag}
+
+  cd $poky_dir
+  oe_dir=$poky_dir/meta-snapd
+  echo "Cloning meta-snapd layer to ${oe_dir} directory from local cache"
+  git clone ${my_dl_dir}/meta-snapd-mirror.git meta-snapd
   cd ${oe_dir}
   git checkout ${yocto_tag}
 
