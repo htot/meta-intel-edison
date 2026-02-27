@@ -153,6 +153,11 @@ folders:
     ref: 2.4-Recovery
     pdf: true
 
+  - title: Snaps from Snapcraft.io
+    jurl: /2.5-Snaps.html
+    ref: 2.5-Snaps
+    pdf: true
+
   - title: LXC and Docker containers
     jurl: /2.6-Building-Debian.html
     ref: 2.6-Building-Debian
