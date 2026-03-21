@@ -21,3 +21,5 @@ do_install () {
 	install -m 0644 mcu_fw_loader.service ${D}${systemd_unitdir}/system/
 }
 
+# Do not enable by default.
+SYSTEMD_AUTO_ENABLE = "disable"
