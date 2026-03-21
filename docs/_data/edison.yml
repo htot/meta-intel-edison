@@ -193,6 +193,11 @@ folders:
     ref: 2.11-Creating-a-deb-repository
     pdf: true
 
+  - title: MCU Support
+    jurl: /2.12-MCU-support.html
+    ref: 2.12-MCU-support
+    pdf: true
+
 - title: SDK
   pdf: true
   jurl: /minitoc_theme_build.html
