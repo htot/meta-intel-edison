@@ -20,6 +20,7 @@ ROOTFS = ""
 
 # Specify rootfs image type
 IMAGE_FSTYPES += "btrfs ext4 live"
+EXTRA_IMAGECMD:btrfs:append = " -M --compress zlib"
 
 IMAGE_CLASSES += "qemuboot"
 
