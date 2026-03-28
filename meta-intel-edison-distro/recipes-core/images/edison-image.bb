@@ -85,9 +85,9 @@ IMAGE_INSTALL:append = " libgpiodcxx"
 # libserialport replaces the former MRAA and UPM to access serial ports
 IMAGE_INSTALL:append = " libserialport"
 
-# INTEL MCU FW - disable for now as not supported by kernel
-#IMAGE_INSTALL:append = " mcu-fw-load"
-#IMAGE_INSTALL:append = " mcu-fw-bin"
+# INTEL MCU FW
+IMAGE_INSTALL:append = " mcu-fw-load"
+IMAGE_INSTALL:append = " mcu-fw-bin"
 
 # nfs
 #IMAGE_INSTALL:append = " nfs-utils"
