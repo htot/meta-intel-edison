@@ -69,6 +69,7 @@ SRC_URI:append = " file://iio.cfg"
 SRC_URI:append = " file://cdc_eem.cfg"
 SRC_URI:append = " file://namespaces.cfg"
 SRC_URI:append = " file://lxc.cfg"
+SRC_URI:append = " file://squashfs.cfg"
 
 # kernel patches
 SRC_URI:append = " file://0044-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
