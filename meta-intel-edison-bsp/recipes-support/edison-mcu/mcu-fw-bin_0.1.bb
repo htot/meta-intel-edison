@@ -13,5 +13,5 @@ do_install () {
 	install -m 644 intel_mcu.bin ${D}/${base_libdir}/firmware/
 }
 
-FILES_${PN} = "${base_libdir}/firmware/"
+FILES:${PN} = "${base_libdir}/firmware/*"
 

@@ -68,9 +68,9 @@ IMAGE_INSTALL:append = " mosquitto-dev"
 IMAGE_INSTALL:append = " mosquitto-clients"
 
 # node and sub-components
-IMAGE_INSTALL:append = " nodejs-dev"
-IMAGE_INSTALL:append = " nodejs-npm"
-IMAGE_INSTALL:append = " nodejs-module-libiio"
+IMAGE_INSTALL:append = "${@bb.utils.contains('DISTRO_FEATURES', 'nodejs', ' nodejs-dev', '', d)}"
+IMAGE_INSTALL:append = "${@bb.utils.contains('DISTRO_FEATURES', 'nodejs', ' nodejs-npm', '', d)}"
+IMAGE_INSTALL:append = "${@bb.utils.contains('DISTRO_FEATURES', 'nodejs', ' nodejs-module-libiio', '', d)}"
 
 # libiio replaces the former MRAA and UPM to access sensor/actuator drivers in the kernel
 IMAGE_INSTALL:append = " libiio"
@@ -85,9 +85,9 @@ IMAGE_INSTALL:append = " libgpiodcxx"
 # libserialport replaces the former MRAA and UPM to access serial ports
 IMAGE_INSTALL:append = " libserialport"
 
-# INTEL MCU FW - disable for now as not supported by kernel
-#IMAGE_INSTALL:append = " mcu-fw-load"
-#IMAGE_INSTALL:append = " mcu-fw-bin"
+# INTEL MCU FW
+IMAGE_INSTALL:append = " mcu-fw-load"
+IMAGE_INSTALL:append = " mcu-fw-bin"
 
 # nfs
 #IMAGE_INSTALL:append = " nfs-utils"
@@ -135,3 +135,4 @@ IMAGE_INSTALL:append = " lxc"
 IMAGE_INSTALL:append = " lxc-templates"
 IMAGE_INSTALL:append = " lxc-networking"
 IMAGE_INSTALL:append = " docker-moby"
+IMAGE_INSTALL:append = " snapd"

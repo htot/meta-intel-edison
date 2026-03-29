@@ -42,6 +42,12 @@ devtools_package: _check_setup_was_done
 sdk: _check_setup_was_done
 	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake edison-image -c populate_sdk"
 
+xfstk: _check_setup_was_done
+	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake xfstk-native -caddto_recipe_sysroot
+
+recover: _check_postbuild_was_done xfstk
+	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; ./out/current/build/toFlash/flashall.sh --recovery --native
+
 src-package: pub
 	./meta-intel-edison-devenv/utils/create_src_package.sh
 	mv edison-src.tgz $(CURDIR)/pub/edison-src-$(BUILD_TAG).tgz
@@ -78,8 +84,9 @@ help:
 	@echo ' setup       - prepare the build env for later build operations'
 	@echo ' cleansstate - clean the sstate for some recipes to work-around some bitbake limitations'
 	@echo ' image       - build the flashable edison image, results are in out/current/build/toFlash'
-	@echo ' flash       - flash the current build image'
+	@echo ' recover     - flash --recovery using Yocto built xfstk-native'
 	@echo ' sdk         - build the SDK for the current build'
+	@echo ' xfstk       - build the xfstk for flashall to use'
 	@echo ' toolchain   - build the cross compilation toolchain for the current build'
 	@echo ' src-package - create the external source package'
 	@echo ' devtools_package - build some extra dev tools packages, results are in out/current/build/devtools_packages/'
