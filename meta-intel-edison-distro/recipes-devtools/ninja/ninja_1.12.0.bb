@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/htot/ninja.git;branch=master;protocol=https \
 
 UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>.*)"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 do_configure[noexec] = "1"
 
@@ -28,7 +28,7 @@ do_compile() {
 }
 
 do_install() {
-	install -D -m 0755  ${WORKDIR}/ninja.py ${D}${bindir}/ninja
+	install -D -m 0755  ${UNPACKDIR}/ninja.py ${D}${bindir}/ninja
 	install -D -m 0755  ${S}/ninja ${D}${bindir}/ninja.run
 }
 

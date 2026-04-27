@@ -8,7 +8,7 @@ PV = "1.2.1+git${SRCPV}"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ea398a763463b76b18da15f013c0c531"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 RDEPENDS:${PN} = "python3-core python3-bottle"
 

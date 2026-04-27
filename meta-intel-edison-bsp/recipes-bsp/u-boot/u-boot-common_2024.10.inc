@@ -29,7 +29,7 @@ SRC_URI:append = " file://0042-disable-LOCALVERSION_AUTO.cfg"
 SRC_URI:append = " file://0001-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
 
 PV = "2024.10"
-S = "${WORKDIR}/git"
-B = "${WORKDIR}/build"
+S = "${UNPACKDIR}/git"
+B = "${UNPACKDIR}/build"
 inherit pkgconfig
 do_configure[cleandirs] = "${B}"

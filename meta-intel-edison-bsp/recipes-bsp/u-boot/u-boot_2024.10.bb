@@ -4,6 +4,6 @@ require u-boot-target-env.inc
 require u-boot-osip.inc
 
 DEPENDS += "bc-native dtc-native acpica-native bison-native swig-native python3-setuptools-native gnutls-native"
-B = "${WORKDIR}/build"
+B = "${UNPACKDIR}/build"
 do_configure[cleandirs] = "${B}"
 UBOOT_INITIAL_ENV = ""
