@@ -6,6 +6,7 @@ Subject: [PATCH 1/1] Description: Fix FTBFS with GCC 10
 Author: Axel Beckert <abe@debian.org>
 Bug-Debian: https://bugs.debian.org/966875
 Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+Upstream-Status: Pending
 ---
  src/generic/views/download_progress.h | 1 +
  1 file changed, 1 insertion(+)
@@ -19,9 +20,9 @@ index 96b7173f..1fcbaf96 100644
  #include <string>
  #include <vector>
 +#include <sstream>
- 
+
  namespace aptitude
  {
--- 
+--
 2.40.1
 

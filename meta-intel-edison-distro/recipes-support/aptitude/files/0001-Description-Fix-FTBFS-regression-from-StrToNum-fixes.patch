@@ -8,6 +8,7 @@ Author: David Kalnischkies <david@kalnischkies.de>
 Author: Axel Beckert <abe@debian.org>
 Bug-Debian: https://bugs.debian.org/982716
 Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+Upstream-Status: Pending
 ---
  src/generic/apt/aptitude_resolver.cc | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
@@ -28,6 +29,6 @@ index 5f660d54..03b2b49f 100644
  	{
  	  // TRANSLATORS: actions ("approve", etc.) are keywords and should
  	  // not be translated
--- 
+--
 2.40.1
 

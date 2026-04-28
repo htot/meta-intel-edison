@@ -24,6 +24,7 @@ Those three sysfs nodes are as:
 Signed-off-by: Fang Hui <huix.fang@intel.com>
 Signed-off-by: Lei Wen <lei.wen@intel.com>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Upstream-Status: Pending
 ---
  drivers/platform/x86/intel/Kconfig       |   1 +
  drivers/platform/x86/intel/Makefile      |   1 +
@@ -652,6 +653,6 @@ index 000000000000..5627d0717f56
 +void intel_psh_ipc_enable_irq(void);
 +
 +#endif
--- 
+--
 2.43.0
 
