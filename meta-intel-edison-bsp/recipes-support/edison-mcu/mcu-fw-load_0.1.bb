@@ -9,7 +9,7 @@ SRC_URI = "file://mcu_fw_loader.service \
 
 SYSTEMD_SERVICE_${PN} = "mcu_fw_loader.service"
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 inherit systemd
 

@@ -25,8 +25,8 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="scarthgap"
-yocto_tag="scarthgap"
+yocto_branch="styhead"
+yocto_tag="styhead"
 
 do_local_conf () {
   rm $yocto_conf_dir/local.conf
@@ -282,7 +282,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   do_update_cache "meta-intel" "git://git.yoctoproject.org"
   do_update_cache "meta-acpi" "https://github.com/edison-fw"
   do_update_cache "meta-qt5" "https://github.com/meta-qt5"
-  do_update_cache "meta-snapd" "https://github.com/canonical"
+  do_update_cache "meta-snapd" "https://github.com/edison-fw"
   do_update_cache "meta-security" "git://git.yoctoproject.org"
 
   cd $my_build_dir

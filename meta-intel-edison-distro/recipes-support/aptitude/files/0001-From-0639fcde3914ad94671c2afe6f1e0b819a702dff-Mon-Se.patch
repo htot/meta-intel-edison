@@ -19,6 +19,7 @@ aptitude-changelog-parser.
 
 Closes: #967911
 Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+Upstream-Status: Pending
 ---
  aptitude-changelog-parser | 1 +
  1 file changed, 1 insertion(+)
@@ -29,12 +30,12 @@ index aee1dfd1..fe5cd9ff 100755
 +++ b/aptitude-changelog-parser
 @@ -15,6 +15,7 @@ eval {
  # Usage: aptitude-changelog-parser [<filename> [<from-version>]]
- 
+
  my %opts;
 +$opts{verbose} = 0;
  if (scalar @ARGV >= 1) {
      $opts{file} = shift @ARGV;
  }
--- 
+--
 2.40.1
 

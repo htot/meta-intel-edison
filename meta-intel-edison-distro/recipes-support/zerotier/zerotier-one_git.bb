@@ -54,7 +54,7 @@ SRC_URI:append = " file://0001-systemd-fix-zerotier-hanging-on-shutdown.patch"
 PV = "1.6.5+git${SRCPV}"
 SRCREV = "6faca86bb424d0b9643b6efa50571f73310d8276"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 # NOTE: spec file indicates the license may be "ZeroTier BSL 1.1"
 

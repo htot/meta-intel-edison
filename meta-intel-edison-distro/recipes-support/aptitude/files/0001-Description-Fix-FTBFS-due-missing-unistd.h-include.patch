@@ -8,6 +8,7 @@ Bug-Debian: https://bugs.debian.org/1011681
 Author: Axel Beckert <abe@debian.org>
 
 Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+Upstream-Status: Pending
 ---
  src/generic/apt/dpkg.cc | 1 +
  1 file changed, 1 insertion(+)
@@ -21,9 +22,9 @@ index fc83b1a1..1701d6db 100644
  #include <sys/wait.h>
  #include <fcntl.h>
 +#include <unistd.h>
- 
+
  using namespace std;
- 
--- 
+
+--
 2.40.1
 

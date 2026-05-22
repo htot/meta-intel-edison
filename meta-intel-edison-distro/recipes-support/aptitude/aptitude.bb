@@ -21,6 +21,7 @@ SRC_URI:append = " file://0001-Description-Fix-FTBFS-due-missing-unistd.h-includ
 SRC_URI:append = " file://0001-Description-Fix-FTBFS-regression-from-StrToNum-fixes.patch"
 SRC_URI:append = " file://0001-Description-Fix-FTBFS-with-GCC-10.patch"
 SRC_URI:append = " file://0001-From-0639fcde3914ad94671c2afe6f1e0b819a702dff-Mon-Se.patch"
+SRC_URI:append = " file://0001-cmdline_show-add-missing-include-file.patch"
 
 inherit autotools gettext pkgconfig
 
@@ -29,4 +30,4 @@ RDEPENDS:aptitude = "perl bash libsigc++-2.0 boost-iostreams cwidget libxapian30
 
 EXTRA_OECONF += " --disable-option-checking --disable-silent-rules --disable-boost-lib-checks --disable-docs --with-boost-libdir=${RECIPE_SYSROOT}/usr/lib --with-boost=${RECIPE_SYSROOT}/usr/include"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"

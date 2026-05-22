@@ -8,6 +8,7 @@ Solves a build failure with GCC 12 and clang.
 
 Fixes: https://bugs.debian.org/1012895
 Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+Upstream-Status: Pending
 ---
  tests/test_parsers.cc | 8 ++++++++
  1 file changed, 8 insertions(+)
@@ -17,9 +18,9 @@ index 1bcc8e31..c26fa6b0 100644
 --- a/tests/test_parsers.cc
 +++ b/tests/test_parsers.cc
 @@ -20,6 +20,14 @@
- 
+
  #include <generic/util/parsers.h>
- 
+
 +// These are used by cppunit so they must be declared early.
 +
 +template<typename T>
@@ -29,8 +30,8 @@ index 1bcc8e31..c26fa6b0 100644
 +std::ostream &operator<<(std::ostream &out, const std::vector<T> &v);
 +
  #include <cppunit/extensions/HelperMacros.h>
- 
+
  #include <boost/fusion/container/generation/make_vector.hpp>
--- 
+--
 2.40.1
 

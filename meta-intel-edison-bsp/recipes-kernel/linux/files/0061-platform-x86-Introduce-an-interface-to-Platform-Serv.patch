@@ -25,6 +25,7 @@ Those three sysfs interfaces are as:
 Signed-off-by: Fang Hui <huix.fang@intel.com>
 Signed-off-by: Lei Wen <lei.wen@intel.com>
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Upstream-Status: Pending
 ---
  drivers/platform/x86/intel/mcu/Kconfig      |  10 +
  drivers/platform/x86/intel/mcu/Makefile     |   3 +
@@ -784,6 +785,6 @@ index 000000000000..28c0d3b664df
 +};
 +
 +#endif
--- 
+--
 2.43.0
 
