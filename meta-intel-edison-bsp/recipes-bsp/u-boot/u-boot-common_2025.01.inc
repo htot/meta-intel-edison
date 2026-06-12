@@ -19,7 +19,7 @@ PE = "1"
 PATCHTOOL = "git"
 SRC_URI = "git://github.com/u-boot/u-boot.git;branch=master;protocol=https"
 
-SRCREV = "f919c3a889f0ec7d63a48b5d0ed064386b0980bd"
+SRCREV = "6d41f0a39d6423c8e57e92ebbe9f8c0333a63f72"
 
 SRC_URI:append = " file://${MACHINE}.env"
 SRC_URI:append = " file://target_env/"
@@ -28,7 +28,7 @@ SRC_URI:append = " file://btrfs.cfg"
 SRC_URI:append = " file://0042-disable-LOCALVERSION_AUTO.cfg"
 SRC_URI:append = " file://0001-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
 
-PV = "2024.10"
+PV = "2025.01"
 S = "${UNPACKDIR}/git"
 B = "${UNPACKDIR}/build"
 inherit pkgconfig
