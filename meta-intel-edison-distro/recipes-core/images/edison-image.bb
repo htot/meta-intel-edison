@@ -59,7 +59,7 @@ IMAGE_INSTALL:append = " packagegroup-core-buildessential"
 IMAGE_INSTALL:append = " zeromq-dev"
 IMAGE_INSTALL:append = " cppzmq-dev"
 IMAGE_INSTALL:append = " python3-paho-mqtt-dev"
-IMAGE_INSTALL:append = " libnss-mdns-dev"
+IMAGE_INSTALL:append = " avahi-libnss-mdns-dev"
 #IMAGE_INSTALL:append = " xdk-daemon"
 IMAGE_INSTALL:append = " oobe"
 
