@@ -305,9 +305,10 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   oe_dir=$poky_dir/meta-virtualization
   echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-virtualization-mirror.git meta-virtualization
-
   cd ${oe_dir}
   git checkout ${yocto_tag}
+  git apply $top_repo_dir/meta-intel-edison/utils/0001-lxc-drop-DOWNLOAD_TEMP-patch.patch
+
   cd $poky_dir
   oe_dir=$poky_dir/meta-security
   echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
