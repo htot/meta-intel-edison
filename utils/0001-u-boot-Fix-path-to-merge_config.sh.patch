@@ -1,4 +1,4 @@
-From 338b578e4c24860d7adf94ac04df4479c1acd52f Mon Sep 17 00:00:00 2001
+From 32483cf5f767074ea2e45d4bcafbb801b4d7e90d Mon Sep 17 00:00:00 2001
 From: Ferry Toth <ftoth@exalondelft.nl>
 Date: Sun, 22 Dec 2024 20:02:46 +0100
 Subject: [PATCH 1/1] u-boot: Fix path to merge_config.sh

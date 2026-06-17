@@ -25,8 +25,8 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="styhead"
-yocto_tag="styhead"
+yocto_branch="walnascar"
+yocto_tag="walnascar"
 
 do_local_conf () {
   rm $yocto_conf_dir/local.conf
@@ -276,14 +276,14 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   esac
 
   # Updating local git cache
-  do_update_cache "poky" "git://git.yoctoproject.org"
+  do_update_cache "poky" "https://git.yoctoproject.org"
   do_update_cache "meta-openembedded" "https://github.com/openembedded"
-  do_update_cache "meta-virtualization" "git://git.yoctoproject.org"
-  do_update_cache "meta-intel" "git://git.yoctoproject.org"
+  do_update_cache "meta-virtualization" "https://git.yoctoproject.org"
+  do_update_cache "meta-intel" "https://git.yoctoproject.org"
   do_update_cache "meta-acpi" "https://github.com/edison-fw"
   do_update_cache "meta-qt5" "https://github.com/meta-qt5"
   do_update_cache "meta-snapd" "https://github.com/edison-fw"
-  do_update_cache "meta-security" "git://git.yoctoproject.org"
+  do_update_cache "meta-security" "https://git.yoctoproject.org"
 
   cd $my_build_dir
   poky_dir=$my_build_dir/poky
@@ -305,9 +305,10 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   oe_dir=$poky_dir/meta-virtualization
   echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"
   git clone ${my_dl_dir}/meta-virtualization-mirror.git meta-virtualization
-
   cd ${oe_dir}
   git checkout ${yocto_tag}
+  git apply $top_repo_dir/meta-intel-edison/utils/0001-lxc-drop-DOWNLOAD_TEMP-patch.patch
+
   cd $poky_dir
   oe_dir=$poky_dir/meta-security
   echo "Cloning meta-virtualization layer to ${oe_dir} directory from local cache"

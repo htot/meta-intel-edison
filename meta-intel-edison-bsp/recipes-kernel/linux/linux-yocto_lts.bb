@@ -71,6 +71,7 @@ SRC_URI:append = " file://namespaces.cfg"
 SRC_URI:append = " file://lxc.cfg"
 SRC_URI:append = " file://squashfs.cfg"
 SRC_URI:append = " file://mcu.cfg"
+SRC_URI:append = " file://features/ecryptfs/ecryptfs.scc"
 
 # kernel patches
 SRC_URI:append = " file://0044-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
