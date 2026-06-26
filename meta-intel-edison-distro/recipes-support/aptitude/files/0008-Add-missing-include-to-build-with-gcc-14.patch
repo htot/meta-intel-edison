@@ -1,18 +1,14 @@
-From 1fec33b536e36c4f01bdf92edf9a92749ea61eb1 Mon Sep 17 00:00:00 2001
-From: Ferry Toth <ftoth@exalondelft.nl>
-Date: Mon, 27 Apr 2026 21:24:47 +0200
-Subject: [PATCH 1/1] cmdline_show: add missing include file
-
-cmdline_show.cc:162:8: error: 'sort' is not a member of 'std'; did you mean 'qsort'?
-
-Signed-off-by: Ferry Toth <ftoth@exalondelft.nl>
+From: Jochen Sprickerhof <jspricke@debian.org>
+Date: Thu, 22 Aug 2024 12:21:43 +0200
+Subject: Add missing include to build with gcc-14
 Upstream-Status: Pending
+Closes: #1074815
 ---
  src/cmdline/cmdline_show.cc | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/src/cmdline/cmdline_show.cc b/src/cmdline/cmdline_show.cc
-index 8277756a..d1bee538 100644
+index 8277756..d1bee53 100644
 --- a/src/cmdline/cmdline_show.cc
 +++ b/src/cmdline/cmdline_show.cc
 @@ -52,6 +52,7 @@
@@ -23,6 +19,3 @@ index 8277756a..d1bee538 100644
 
  namespace cw = cwidget;
  using aptitude::cmdline::create_terminal;
---
-2.43.0
-
