@@ -20,13 +20,13 @@ ENV_COMPOSED_DIR = "${UNPACKDIR}/target_composed"
 ENV_BIN_DIR = "${UNPACKDIR}/target_env_bin"
 
 # Env deploy dir is the name of directory where binary envs will be deployed
-ENV_DEPLOY_DIR="u-boot-envs"
+ENV_DEPLOY_DIR = "u-boot-envs"
 
 # Env deploy src dir is the name of directory where txt envs will be deployed
-ENV_SRC_DEPLOY_DIR="u-boot-envs-src"
+ENV_SRC_DEPLOY_DIR = "u-boot-envs-src"
 
 # Env target to use for IFWI stitching process
-ENV_IFWI_TARGET_NAME="ifwi"
+ENV_IFWI_TARGET_NAME = "ifwi"
 # Env image is U-Boot primary environment (where internal U-Boot variables are stored)
 # The same vairiable is also defined in u-boot-osip recip in charge of doing stitching
 # process for IFWI
