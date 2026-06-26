@@ -14,8 +14,6 @@ SRC_URI = "git://github.com/htot/ninja.git;branch=master;protocol=https \
 
 UPSTREAM_CHECK_GITTAGREGEX = "v(?P<pver>.*)"
 
-S = "${UNPACKDIR}/git"
-
 do_configure[noexec] = "1"
 
 do_compile:class-native() {
@@ -35,4 +33,4 @@ do_install() {
 BBCLASSEXTEND = "native nativesdk"
 
 # This is a different Ninja
-CVE_CHECK_IGNORE += "CVE-2021-4336"
+#CVE_CHECK_IGNORE += "CVE-2021-4336"

@@ -9,8 +9,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=302c978df31d561ea5d9e4ef17dc8563"
 SECTION = "base"
 DEPENDS = "btrfs-tools"
 
-S = "${UNPACKDIR}/git"
-
 SRCREV = "d79eacf77abe3b799387bb8a4e07a18f1f1031e8"
 SRC_URI = " \
             git://github.com/kilobyte/compsize.git;branch=master;protocol=https \
