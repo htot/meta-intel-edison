@@ -27,26 +27,26 @@ setup: pub bbcache
 	./meta-intel-edison/setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
 	@rm -f out/current
 	@ln -s $(CURDIR)/out/$(SDK_HOST) $(CURDIR)/out/current
-	@if [ $(SDK_HOST) = macosx ]; then  /bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake odcctools2-crosssdk -c cleansstate" ; echo "Please make sure that OSX-sdk.zip is available in your bitbake download directory" ; fi
+	@if [ $(SDK_HOST) = macosx ]; then  /bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; bitbake odcctools2-crosssdk -c cleansstate" ; echo "Please make sure that OSX-sdk.zip is available in your bitbake download directory" ; fi
 
 update: _check_old_setup_exits
 	@echo Updating buildenv for SDK host $(SDK_HOST). If it does, try "make cleansstate". If no luck, try "make setup", this will clean out your out directory
 	./meta-intel-edison/setup.sh $(SETUP_ARGS) --dl_dir=$(BB_DL_DIR) --sstate_dir=$(BB_SSTATE_DIR) --build_dir=$(CURDIR)/out/$(SDK_HOST) --build_name=$(BUILD_TAG) --sdk_host=$(SDK_HOST)
 
 cleansstate: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison/utils/invalidate_sstate.sh $(CURDIR)/out/current/build"
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison/utils/invalidate_sstate.sh $(CURDIR)/out/current/build"
 
 devtools_package: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison-devtools/utils/create_devtools_package.sh $(CURDIR)/out/current/build"
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; $(CURDIR)/meta-intel-edison-devtools/utils/create_devtools_package.sh $(CURDIR)/out/current/build"
 
 sdk: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake edison-image -c populate_sdk"
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; bitbake edison-image -c populate_sdk"
 
 xfstk: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake xfstk-native -caddto_recipe_sysroot
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; bitbake xfstk-native -caddto_recipe_sysroot
 
 recover: _check_postbuild_was_done xfstk
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; ./out/current/build/toFlash/flashall.sh --recovery --native
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; ./out/current/build/toFlash/flashall.sh --recovery --native
 
 src-package: pub
 	./meta-intel-edison-devenv/utils/create_src_package.sh
@@ -56,11 +56,11 @@ clean:
 	rm -rf out
 
 u-boot linux-externalsrc edison-image virtual/kernel: cleansstate
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake $@"
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; bitbake $@"
 	@echo Now you may want to run 'make postbuild'
 
 meta-toolchain: _check_setup_was_done
-	/bin/bash -c "source out/current/poky/oe-init-build-env $(CURDIR)/out/current/build ; bitbake -c cleansstate $@ ; bitbake $@"
+	/bin/bash -c "source out/current/poky/openembedded-core/oe-init-build-env $(CURDIR)/out/current/build ; bitbake -c cleansstate $@ ; bitbake $@"
 	@echo Now you may want to run 'make postbuild'
 
 bootloader: u-boot
