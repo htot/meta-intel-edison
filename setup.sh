@@ -25,9 +25,9 @@
 set -e
 
 # Branch and Tag to fetch from the yoctoproject.org upstream repository.
-yocto_branch="whinlatter"
-yocto_tag="whinlatter"
-poky_tag="yocto-5.3.4"
+yocto_branch="wrynose"
+yocto_tag="wrynose"
+poky_tag="yocto-6.0.1"
 
 do_local_conf () {
   rm $yocto_conf_dir/local.conf
@@ -296,8 +296,11 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
   mkdir -p $poky_dir
   cd $poky_dir
   oe_dir=$poky_dir/bitbake
-  git clone ${poky_branch} ${my_dl_dir}/bitbake-mirror.git bitbake
+  git clone ${my_dl_dir}/bitbake-mirror.git bitbake
+  cd ${oe_dir}
+  git checkout -b ${poky_tag}
 
+  cd $poky_dir
   oe_dir=$poky_dir/openembedded-core
   git clone ${my_dl_dir}/openembedded-core-mirror.git openembedded-core
   cd ${oe_dir}
@@ -305,7 +308,7 @@ COPYLEFT_LICENSE_INCLUDE = 'GPL* LGPL*'
 
   cd $poky_dir
   oe_dir=$poky_dir/meta-yocto
-  git clone ${poky_branch} ${my_dl_dir}/meta-yocto-mirror.git meta-yocto
+  git clone ${my_dl_dir}/meta-yocto-mirror.git meta-yocto
   cd ${oe_dir}
   git checkout ${yocto_tag}
 
