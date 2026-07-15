@@ -5,6 +5,7 @@ first 'init' program more efficiently."
 
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
+PACKAGE_INSTALL += " kmod"
 PACKAGE_INSTALL += " kernel-module-mmc-block"
 PACKAGE_INSTALL += " kernel-module-sdhci-acpi"
 PACKAGE_INSTALL += " kernel-module-sdhci-pci"
@@ -25,5 +26,5 @@ PACKAGE_INSTALL:remove = " kernel-image"
 ROOTFS_POSTPROCESS_COMMAND += "clobber_unused; "
 
 clobber_unused () {
-        rm -rf ${IMAGE_ROOTFS}/usr/lib/python3.12
+        rm -rf ${IMAGE_ROOTFS}/usr/lib/python3.14
 }

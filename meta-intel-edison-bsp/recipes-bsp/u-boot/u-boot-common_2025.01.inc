@@ -27,8 +27,18 @@ SRC_URI:append = " file://0001-added-block-command-which-returns-the-block-size.
 SRC_URI:append = " file://btrfs.cfg"
 SRC_URI:append = " file://0042-disable-LOCALVERSION_AUTO.cfg"
 SRC_URI:append = " file://0001-REVERTME-usb-dwc3-gadget-skip-endpoints-ep-18-in-out.patch"
+SRC_URI:append = " file://efi_disable.cfg"
 
 PV = "2025.01"
 B = "${UNPACKDIR}/build"
 inherit pkgconfig
 do_configure[cleandirs] = "${B}"
+EXTRA_OEMAKE += "NO_EFI_LOADER=1"
+
+do_configure:append() {
+    cat > ${S}/tools/binman/binman << 'SCRIPT'
+#!/bin/sh
+exit 0
+SCRIPT
+    chmod +x ${S}/tools/binman/binman
+}
