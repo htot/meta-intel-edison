@@ -252,6 +252,10 @@ folders:
   jurl: /minitoc_theme_build.html
 
   folderitems:
+  - title: Bitbake tricks
+    jurl: /5.1-Bitbake-tricks.html
+    ref: 5.1-Bitbake-tricks
+    pdf: true
   - title: Creating documentation
     jurl: /5.2-Documentation.html
     ref: 5.2-Documentation
